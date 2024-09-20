@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="signup1.css">
+     <!-- Favicon -->
+     <link href="img/favicon.ico" rel="icon" />
+
+     <!-- Google Web Fonts -->
+     <link
+       href="https://fonts.googleapis.com/css2?family=Montserrat&family=Oswald:wght@400;500;600&display=swap"
+       rel="stylesheet"
+     />
+ 
+     <!-- Font Awesome -->
+     <link
+       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" 
+       rel="stylesheet"
+     />
+ 
+     <!-- Flaticon Font -->
+     <link href="lib/flaticon/font/flaticon.css" rel="stylesheet" />
+ 
+     <!-- Libraries Stylesheet -->
+     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet" />
+ 
+     <!-- Customized Bootstrap Stylesheet -->
+     <link href="css/style.css" rel="stylesheet" />
+    <title>kpsDesign</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <a href="" class="navbar-brand">
+                <h1 class="m-0 display-5 text-white">
+                  <span class="text-primary">kps</span>DESIGN
+                </h1>
+            </a>
+        </div>
+        
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+
+        <div class="login-container" id="login">
+            <div class="top">
+                <span>Don't have an account? <a href="#" onclick="register()">Sign Up</a></span>
+                <header>Login</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" id="loginEmail" placeholder="Username or Email">
+                <i class="bx bx-user"></i>
+                <div class="error-message" id="loginEmail-error"></div>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" id="loginPassword" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+                <div class="error-message" id="loginPassword-error"></div>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" id="loginSubmit" value="Sign In">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="login-check">
+                    <label for="login-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Forgot password?</a></label>
+                </div>
+            </div>
+        </div>
+
+        <!------------------- registration form -------------------------->
+
+        <div class="register-container" id="register">
+            <div class="top">
+                <span>Have an account? <a href="#" onclick="login()">Login</a></span>
+                <header>Sign Up</header>
+            </div>
+            <div class="two-forms">
+                <div class="input-box">
+                    <input type="text" class="input-field" id="firstname" placeholder="Firstname">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text" class="input-field" id="lastname" placeholder="Lastname">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" id="email" placeholder="Email">
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" id="password" placeholder="Password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" id="btn1" value="Register">
+            </div>
+            <div class="two-col">
+                <div class="one">
+                    <input type="checkbox" id="register-check">
+                    <label for="register-check"> Remember Me</label>
+                </div>
+                <div class="two">
+                    <label><a href="#">Terms & conditions</a></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+<script>
+   function myMenuFunction() {
+       var i = document.getElementById("navMenu");
+       if (i.className === "nav-menu") {
+           i.className += " responsive";
+       } else {
+           i.className = "nav-menu";
+       }
+   }
+</script>
+
+<script>
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+
+    document.getElementById("btn1").addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission
+
+        // Get form values
+        let firstname = document.getElementById("firstname").value.trim();
+        let lastname = document.getElementById("lastname").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+
+        // Error message container
+        let errorMessage = "";
+
+        // Basic validation checks
+        if (firstname === "") {
+            errorMessage += "First name is required.\n";
+        }
+        if (lastname === "") {
+            errorMessage += "Last name is required.\n";
+        }
+        if (email === "") {
+            errorMessage += "Email is required.\n";
+        } else if (!validateEmail(email)) {
+            errorMessage += "Invalid email format.\n";
+        }
+        if (password === "") {
+            errorMessage += "Password is required.\n";
+        } else if (password.length < 6) {
+            errorMessage += "Password must be at least 6 characters long.\n";
+        }
+
+        // If there's an error, alert the user. Otherwise, go to the login page.
+        if (errorMessage !== "") {
+            alert(errorMessage);
+        } else {
+            window.location.href = "signup1.html"; // Redirect to login if validation passes
+        }
+    });
+
+    // Helper function to validate email format
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+ // Login validation
+ document.getElementById("loginSubmit").addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent form submission
+
+        // Get form values
+        let emailOrUsername = document.getElementById("loginEmail").value.trim();
+        let password = document.getElementById("loginPassword").value.trim();
+
+        // Error message container
+        let errorMessage = "";
+
+        // Basic validation checks
+        if (emailOrUsername === "") {
+            errorMessage += "Username or Email is required.\n";
+        } else if (!validateEmail(emailOrUsername)) {
+            errorMessage += "Invalid email format.\n";
+        }
+
+        if (password === "") {
+            errorMessage += "Password is required.\n";
+        }
+
+        // If there's an error, alert the user. Otherwise, go to the home page.
+        if (errorMessage !== "") {
+            alert(errorMessage);
+        } else {
+            window.location.href = "index.html"; // Redirect to home page
+        }
+    });
+
+    // Function to validate email format
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    </script>
+
+<script src="signup.js"></script>
+</body>
+</html>
